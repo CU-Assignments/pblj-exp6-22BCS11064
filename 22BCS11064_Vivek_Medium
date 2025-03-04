@@ -1,0 +1,52 @@
+import java.util.*;
+import java.util.stream.*;
+
+class Student {
+    String name;
+    double marks;
+
+    // Constructor
+    public Student(String name, double marks) {
+        this.name = name;
+        this.marks = marks;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + marks + "%)";
+    }
+}
+
+public class StudentFilterSort {
+
+    public static void main(String[] args) {
+        // Create a list of students
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("Jeetu", 82.5));
+        students.add(new Student("Aman", 90.0));
+        students.add(new Student("jay", 72.5));
+        students.add(new Student("Charlie", 76.0));
+        students.add(new Student("David", 65.0));
+        
+
+        students.stream()
+            
+            .filter(student -> student.getMarks() > 75)
+            
+            .sorted(Comparator.comparingDouble(Student::getMarks).reversed())
+            
+            .map(Student::getName)
+        
+            .forEach(System.out::println);
+    }
+}
+
